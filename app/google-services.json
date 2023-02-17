@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "656782739327",
+    "project_id": "indoor-navigator-82e40",
+    "storage_bucket": "indoor-navigator-82e40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656782739327:android:315f96eaa2a9b67211bc4a",
+        "android_client_info": {
+          "package_name": "com.example.indoornavigator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "656782739327-hmluaoui8k7hm8b7sm5rbu7eddugi952.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.indoornavigator",
+            "certificate_hash": "de642dc3cd1ba790c31b9152cd7a6522542db0bb"
+          }
+        },
+        {
+          "client_id": "656782739327-0dv2gfgh39lt2q5t8ln329i2uu88b8oj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHliyd2xVEQQbS6Ty2O83QCTw5IhTweLo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "656782739327-0dv2gfgh39lt2q5t8ln329i2uu88b8oj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

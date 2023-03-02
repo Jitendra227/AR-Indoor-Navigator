@@ -26,6 +26,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'com.example.indoornavigator'
 }
 
 dependencies {
@@ -62,4 +63,11 @@ dependencies {
 
     implementation 'com.airbnb.android:lottie:5.2.0'
 
+    implementation 'com.google.android.gms:play-services-auth:20.4.1'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 }
+//sceneform.asset('sampledata/model.obj',
+//        'default',
+//        'sampledata/model.sfa',
+//        'src/main/res/raw/cube')

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IndoorNavigator</string>
+    <string name="GOOGLE_CLOUD_API_KEY">AIzaSyBc54m_ZY4jn9teikG5BN42_Hxe1lQEvc8</string>
 </resources>

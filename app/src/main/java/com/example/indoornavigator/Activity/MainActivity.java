@@ -26,7 +26,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
+import com.example.indoornavigator.Fragment.MapsFragment;
 import com.example.indoornavigator.R;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -84,12 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isAllFabsVisible) {
-                    mf0.show();
-                    mf1.show();
-                    mf2.show();
-                    mf3.show();
-                    mf4.show();
-                    mf5.show();
+                    mf0.show();mf1.show();mf2.show();mf3.show();mf4.show();mf5.show();
                     f0.setVisibility(View.VISIBLE);
                     f1.setVisibility(View.VISIBLE);
                     f2.setVisibility(View.VISIBLE);
@@ -100,12 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     floor.extend();
                     isAllFabsVisible = true;
                 } else {
-                    mf0.hide();
-                    mf1.hide();
-                    mf2.hide();
-                    mf3.hide();
-                    mf4.hide();
-                    mf5.hide();
+                    mf0.hide();mf1.hide();mf2.hide();mf3.hide();mf4.hide();mf5.hide();
                     f0.setVisibility(View.GONE);
                     f1.setVisibility(View.GONE);
                     f2.setVisibility(View.GONE);
@@ -127,6 +120,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //initializing the map fragment here...
+        Fragment fragment = new MapsFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_map_frame_layout, fragment)
+                .commit();
 
     }
 }

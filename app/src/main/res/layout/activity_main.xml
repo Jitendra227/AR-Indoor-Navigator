@@ -8,14 +8,15 @@
     android:background="@drawable/map"
     tools:context=".Activity.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_tool_bar"
+    <FrameLayout
+        android:id="@+id/main_map_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     <LinearLayout
         android:id="@+id/set_layout"
@@ -69,7 +70,7 @@
             android:gravity="center"
             android:text="What are you looking for?"
             android:textColor="@color/darkmagenta"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
         <EditText
@@ -81,14 +82,14 @@
             android:keyboardNavigationCluster="false"
             android:layout_marginTop="8dp"
             android:maxLines="1"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Popular Places"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -106,13 +107,14 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/electronic_btn"
+                    android:id="@+id/office_btn"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:fitsSystemWindows="true"
                     android:padding="10dp"
+                    android:contentDescription="office btn"
                     android:scaleType="fitCenter"
                     android:src="@drawable/office" />
 
@@ -124,7 +126,7 @@
                     android:paddingHorizontal="5dp"
                     android:text="Office"
                     android:textColor="@android:color/black"
-                    android:textSize="12dp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -135,13 +137,14 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/toys_btn"
+                    android:id="@+id/library_btn"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:fitsSystemWindows="true"
                     android:padding="10dp"
+                    android:contentDescription="library btn"
                     android:scaleType="fitCenter"
                     android:src="@drawable/library" />
 
@@ -153,7 +156,7 @@
                     android:paddingHorizontal="5dp"
                     android:text="Library"
                     android:textColor="@android:color/black"
-                    android:textSize="12dp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -164,13 +167,14 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/tv_btn"
+                    android:id="@+id/auditorium_btn"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:fitsSystemWindows="true"
                     android:padding="10dp"
+                    android:contentDescription="auditorium btn"
                     android:scaleType="fitCenter"
                     android:src="@drawable/auditorium" />
 
@@ -182,7 +186,7 @@
                     android:paddingHorizontal="5dp"
                     android:text="auditorium"
                     android:textColor="@android:color/black"
-                    android:textSize="12dp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -193,13 +197,14 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/clothing_btn"
+                    android:id="@+id/lab_btn"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:fitsSystemWindows="true"
                     android:padding="10dp"
+                    android:contentDescription="lab btn"
                     android:scaleType="fitCenter"
                     android:src="@drawable/lab" />
 
@@ -211,7 +216,7 @@
                     android:paddingHorizontal="5dp"
                     android:text="Computer Lab"
                     android:textColor="@android:color/black"
-                    android:textSize="12dp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
         </LinearLayout>

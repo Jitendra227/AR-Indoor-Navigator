@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/set_layout"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
@@ -38,7 +39,18 @@
             android:src="@drawable/ic_setting_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </LinearLayout>
+
+    <include
+        android:id="@+id/floor_layout"
+        layout="@layout/activity_testing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/set_layout" />
+
 
     <LinearLayout
         android:id="@+id/main_linearLayout1"
@@ -61,10 +73,12 @@
             android:textStyle="bold"/>
 
         <EditText
+            android:id="@+id/main_search_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_edit_text"
             android:hint="type destination..."
+            android:keyboardNavigationCluster="false"
             android:layout_marginTop="8dp"
             android:maxLines="1"
             android:textSize="16dp" />

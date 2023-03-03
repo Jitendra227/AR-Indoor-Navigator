@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import com.example.indoornavigator.Activity.MainActivity;
+import com.example.indoornavigator.Activity.TestingActivity;
 
 public class SplashScreen extends AppCompatActivity {
 

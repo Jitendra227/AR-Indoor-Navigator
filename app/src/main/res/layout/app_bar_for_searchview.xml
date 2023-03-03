@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.SearchLocationActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/app_bar_rel_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/custom_searchview_bg"
+            >
+
+            <ImageView
+                android:id="@+id/iv_back_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back_icon"
+                android:background="?attr/selectableItemBackground"
+                android:layout_marginLeft="6dp"/>
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView_action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/iv_back_icon"
+                android:imeOptions="actionSearch"
+                android:background="@android:color/transparent"
+                android:textStyle="bold"
+                android:focusable="false"
+                app:iconifiedByDefault="false"
+                app:searchIcon="@null"
+                app:queryHint="search..."
+                app:defaultQueryHint="search here"/>
+
+<!--            <ImageView-->
+<!--                android:id="@+id/iv_close_icon"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:background="?attr/selectableItemBackground"-->
+<!--                android:src="@drawable/ic_closed_icon"-->
+<!--                android:layout_marginLeft="2dp"-->
+<!--                android:layout_marginRight="4dp"/>-->
+
+
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/app_bar_lin_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/ic_filter_icon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="12dp"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/ic_filter_icon" />
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

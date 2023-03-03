@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    tools:context=".Activity.TestingActivity"
+    tools:ignore="HardcodedText">
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/floor"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Floor-0"
+        app:icon="@drawable/tiles"
+        android:textColor="@color/white"
+        app:iconTint="@color/white"
+        android:backgroundTint="@color/darkmagenta"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ground_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:fabSize="mini"
+        app:tint="@color/white"
+        android:src="@drawable/floor0_icon"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/floor"
+        app:layout_constraintEnd_toEndOf="@+id/floor"
+        android:contentDescription="Ground Floor" />
+    <TextView
+        android:id="@+id/ground_floor_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Ground Floor"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ground_floor"
+        app:layout_constraintEnd_toStartOf="@+id/ground_floor"
+        app:layout_constraintTop_toTopOf="@+id/ground_floor" />    <!--Floating action button for add person-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/first_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:fabSize="mini"
+        app:tint="@color/white"
+        android:src="@drawable/floor1_icon"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/ground_floor"
+        app:layout_constraintEnd_toEndOf="@+id/ground_floor"
+        app:layout_constraintStart_toStartOf="@+id/ground_floor"
+        android:contentDescription="Floor- 1" />
+    <TextView
+        android:id="@+id/first_floor_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Floor- 1"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/first_floor"
+        app:layout_constraintEnd_toStartOf="@+id/first_floor"
+        app:layout_constraintTop_toTopOf="@+id/first_floor" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/second_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:fabSize="mini"
+        app:tint="@color/white"
+        android:src="@drawable/floor2_icon"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/first_floor"
+        app:layout_constraintEnd_toEndOf="@+id/first_floor"
+        app:layout_constraintStart_toStartOf="@+id/first_floor"
+        android:contentDescription="Floor- 2" />
+    <TextView
+        android:id="@+id/second_floor_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Floor- 2"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/second_floor"
+        app:layout_constraintEnd_toStartOf="@+id/second_floor"
+        app:layout_constraintTop_toTopOf="@+id/second_floor" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/third_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:fabSize="mini"
+        app:tint="@color/white"
+        android:src="@drawable/floor3_icon"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/second_floor"
+        app:layout_constraintEnd_toEndOf="@+id/second_floor"
+        app:layout_constraintStart_toStartOf="@+id/second_floor"
+        android:contentDescription="Floor- 3" />
+    <TextView
+        android:id="@+id/third_floor_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Floor- 3"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/third_floor"
+        app:layout_constraintEnd_toStartOf="@+id/third_floor"
+        app:layout_constraintTop_toTopOf="@+id/third_floor" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fourth_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:fabSize="mini"
+        app:tint="@color/white"
+        android:src="@drawable/floor4_icon"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/third_floor"
+        app:layout_constraintEnd_toEndOf="@+id/third_floor"
+        app:layout_constraintStart_toStartOf="@+id/third_floor"
+        android:contentDescription="Floor- 4" />
+    <TextView
+        android:id="@+id/fourth_floor_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Floor- 4"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fourth_floor"
+        app:layout_constraintEnd_toStartOf="@+id/fourth_floor"
+        app:layout_constraintTop_toTopOf="@+id/fourth_floor" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fifth_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:fabSize="mini"
+        app:tint="@color/white"
+        android:src="@drawable/floor5_icon"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/fourth_floor"
+        app:layout_constraintEnd_toEndOf="@+id/fourth_floor"
+        app:layout_constraintStart_toStartOf="@+id/fourth_floor"
+        android:contentDescription="Floor- 5" />
+    <TextView
+        android:id="@+id/fifth_floor_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Floor- 5"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fifth_floor"
+        app:layout_constraintEnd_toStartOf="@+id/fifth_floor"
+        app:layout_constraintTop_toTopOf="@+id/fifth_floor" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

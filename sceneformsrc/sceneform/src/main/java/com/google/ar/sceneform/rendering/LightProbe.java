@@ -107,8 +107,7 @@ public class LightProbe {
   private final Color colorCorrection = new Color(1f, 1f, 1f);
   private final Color ambientColor = new Color();
   private float[] irradianceData;
-  @Nullable
-  private String name = null;
+  @Nullable private String name = null;
 
   private ChangeId changeId = new ChangeId();
 

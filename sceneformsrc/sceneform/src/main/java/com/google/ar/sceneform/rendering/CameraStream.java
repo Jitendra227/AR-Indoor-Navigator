@@ -57,11 +57,11 @@ public class CameraStream {
   private final FloatBuffer cameraUvCoords;
   private final FloatBuffer transformedCameraUvCoords;
 
-  @Nullable private ExternalTexture cameraTexture;
+  @Nullable
+  private ExternalTexture cameraTexture;
 
   @Nullable private Material defaultCameraMaterial = null;
-  @Nullable
-  private Material cameraMaterial = null;
+  @Nullable private Material cameraMaterial = null;
 
   private int renderablePriority = Renderable.RENDER_PRIORITY_LAST;
 

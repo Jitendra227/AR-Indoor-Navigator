@@ -42,8 +42,7 @@ public class Texture {
   // This will make sure that all the mip levels are filled out, down to 1x1.
   private static final int MIP_LEVELS_TO_GENERATE = 0xff;
 
-  @Nullable
-  private final TextureInternalData textureData;
+  @Nullable private final TextureInternalData textureData;
 
   /** Constructs a default texture, if nothing else is set */
   public static Builder builder() {

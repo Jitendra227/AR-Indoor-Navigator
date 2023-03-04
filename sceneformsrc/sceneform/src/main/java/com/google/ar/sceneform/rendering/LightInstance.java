@@ -29,10 +29,10 @@ public class LightInstance {
 
   private @Entity final int entity;
   private final Light light;
-  @Nullable private Renderer renderer;
-
   @Nullable
-  private TransformProvider transformProvider = null;
+  private Renderer renderer;
+
+  @Nullable private TransformProvider transformProvider = null;
 
   private Vector3 localPosition;
   private Vector3 localDirection;

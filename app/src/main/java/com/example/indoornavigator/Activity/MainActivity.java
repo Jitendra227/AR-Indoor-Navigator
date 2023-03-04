@@ -1,38 +1,32 @@
 package com.example.indoornavigator.Activity;
 
 
-import android.Manifest;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Point;
+import android.content.pm.ConfigurationInfo;
 import android.os.Build;
 import android.os.Bundle;
-
-import android.util.Log;
-import android.util.Rational;
-import android.view.Display;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
-import com.example.indoornavigator.Fragment.MapsFragment;
 import com.example.indoornavigator.R;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.ar.core.Anchor;
+import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.rendering.ModelRenderable;
+import com.google.ar.sceneform.ux.ArFragment;
+import com.google.ar.sceneform.ux.TransformableNode;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,16 +35,31 @@ public class MainActivity extends AppCompatActivity {
     TextView f0, f1, f2, f3, f4, f5;
     boolean isAllFabsVisible;
 
+    public static final double MIN_OPENGL_VERSION = 3.0;
+    private ArFragment arFragment;
+    private int clickNo = 0;
+
     EditText searchBtn;
+    ImageView mapLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        searchBtn = findViewById(R.id.main_search_location);
-
         //binding
+        mapLayout = findViewById(R.id.main_maps_layout);
+        searchBtn = findViewById(R.id.main_search_location);
+        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.sceneform_ar_scene_view);
+
+        ActivityManager actv = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        ConfigurationInfo configurationInfo = actv.getDeviceConfigurationInfo();
+
+        System.out.println("\n<======================================================>");
+        System.out.println(Double.parseDouble(configurationInfo.getGlEsVersion()));
+        System.out.println(configurationInfo.reqGlEsVersion>=0x30000);
+
+
         floor = findViewById(R.id.floor);
         mf0 = findViewById(R.id.ground_floor);
         mf1 = findViewById(R.id.first_floor);
@@ -112,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,12 +129,55 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //initializing the map fragment here...
-        Fragment fragment = new MapsFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_map_frame_layout, fragment)
-                .commit();
-
+        if(checkSystemSupport(this)){
+            arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
+                clickNo++;
+                if (clickNo == 1) {
+                    Anchor anchor = hitResult.createAnchor();
+                    ModelRenderable.builder()
+                            .setSource(this, R.raw.model)
+                            .setIsFilamentGltf(true)
+                            .build()
+                            .thenAccept(modelRenderable -> addModel(anchor, modelRenderable))
+                            .exceptionally(throwable -> {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                                builder.setMessage("Something is not right" + throwable.getMessage()).show();
+                                return null;
+                            });
+                }
+            });
+        }else {
+            return;
+        }
     }
+
+    public static boolean checkSystemSupport(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            String openGlVersion = ((ActivityManager) Objects.requireNonNull(activity
+                    .getSystemService(Context.ACTIVITY_SERVICE)))
+                    .getDeviceConfigurationInfo()
+                    .getGlEsVersion();
+            if (Double.parseDouble(openGlVersion) >= 3.0) {
+                return true;
+            } else {
+                Toast.makeText(activity, "App needs OpenGl Version 3.0 or later", Toast.LENGTH_SHORT).show();
+                activity.finish();
+                return false;
+            }
+        } else {
+            Toast.makeText(activity, "App does not support required Build Version", Toast.LENGTH_SHORT).show();
+            activity.finish();
+            return false;
+        }
+    }
+
+    private void addModel(Anchor anchor, ModelRenderable modelRenderable) {
+        AnchorNode anchorNode = new AnchorNode(anchor);
+        anchorNode.setParent(arFragment.getArSceneView().getScene());
+        TransformableNode transform = new TransformableNode(arFragment.getTransformationSystem());
+        transform.setParent(anchorNode);
+        transform.setRenderable(modelRenderable);
+        transform.select();
+    }
+
 }

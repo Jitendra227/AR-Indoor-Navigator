@@ -45,9 +45,9 @@ public abstract class BaseGesture<T extends BaseGesture<T>> {
   private boolean hasFinished;
   private boolean wasCancelled;
 
+  @Nullable protected Node targetNode;
   @Nullable
-  protected Node targetNode;
-  @Nullable private OnGestureEventListener<T> eventListener;
+  private OnGestureEventListener<T> eventListener;
 
   public BaseGesture(GesturePointersUtility gesturePointersUtility) {
     this.gesturePointersUtility = gesturePointersUtility;

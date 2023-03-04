@@ -41,18 +41,6 @@ public class Node extends NodeParent implements TransformProvider {
    * called.
    */
   public interface OnTouchListener {
-    /**
-     * Handles when a touch event has been dispatched to a node.
-     *
-     * <p>On {@link MotionEvent#ACTION_DOWN} events, {@link HitTestResult#getNode()} will always be
-     * this node or one of its children. On other events, the touch may have moved causing the
-     * {@link HitTestResult#getNode()} to change (or possibly be null).
-     *
-     * @param hitTestResult represents the node that was touched and information about where it was
-     *     touched
-     * @param motionEvent the MotionEvent object containing full information about the event
-     * @return true if the listener has consumed the event, false otherwise
-     */
     boolean onTouch(HitTestResult hitTestResult, MotionEvent motionEvent);
   }
 
@@ -100,18 +88,6 @@ public class Node extends NodeParent implements TransformProvider {
    */
   public interface TransformChangedListener {
 
-    /**
-     * Notifies the listener that the transformation of the {@link Node} has changed. Called right
-     * after {@link #onTransformChange(Node)}.
-     *
-     * <p>The originating node is the most top-level node in the hierarchy that triggered the node
-     * to change. It will always be either the same node or one of its' parents. i.e. if node A's
-     * position is changed, then that will trigger {@link #onTransformChanged(Node, Node)} to be
-     * called for all of it's descendants with the originatingNode being node A.
-     *
-     * @param node the node that changed
-     * @param originatingNode the node that triggered the transformation to change
-     */
     void onTransformChanged(Node node, Node originatingNode);
   }
 
@@ -155,8 +131,7 @@ public class Node extends NodeParent implements TransformProvider {
   // Scene Graph fields.
   @Nullable private Scene scene;
   // Stores the parent as a node (if the parent is a node) to avoid casting.
-  @Nullable
-  private Node parentAsNode;
+  @Nullable private Node parentAsNode;
 
   // the name of the node to identify it in the hierarchy
   @SuppressWarnings("unused")
@@ -165,19 +140,6 @@ public class Node extends NodeParent implements TransformProvider {
   // name hash for comparison
   private int nameHash = DEFAULT_NAME.hashCode();
 
-  /**
-   * WARNING: Do not assign this property directly unless you know what you are doing. Instead, call
-   * setParent. This field is only exposed in the package to be accessible to the class NodeParent.
-   *
-   * <p>In addition to setting this field, setParent will also do the following things:
-   *
-   * <ul>
-   *   <li>Remove this node from its previous parent's children.
-   *   <li>Add this node to its new parent's children.
-   *   <li>Recursively update the node's transformation to reflect the change in parent
-   *   <li>Recursively update the scene field to match the new parent's scene field.
-   * </ul>
-   */
   // The node's parent could be a Node or the scene.
   @Nullable NodeParent parent;
 
@@ -204,8 +166,7 @@ public class Node extends NodeParent implements TransformProvider {
   // Rendering fields.
   private int renderableId = ChangeId.EMPTY_ID;
   @Nullable private RenderableInstance renderableInstance;
-  // TODO: Right now, lightInstance can cause leaks because it subscribes to event
-  // listeners on Light that will not be disposed unless setLight(null) is called.
+
   @Nullable private LightInstance lightInstance;
 
   // Collision fields.
@@ -230,14 +191,6 @@ public class Node extends NodeParent implements TransformProvider {
     localScale.set(1, 1, 1);
     cachedWorldScale.set(localScale);
   }
-
-  /**
-   * Sets the name of this node. Nodes can be found using their names. Multiple nodes may have the
-   * same name, in which case calling {@link NodeParent#findByName(String)} will return the first
-   * node with the given name.
-   *
-   * @param name The name of the node.
-   */
   public final void setName(String name) {
     Preconditions.checkNotNull(name, "Parameter \"name\" was null.");
 
@@ -250,20 +203,6 @@ public class Node extends NodeParent implements TransformProvider {
     return name;
   }
 
-  /**
-   * Changes the parent node of this node. If set to null, this node will be detached from its
-   * parent. The local position, rotation, and scale of this node will remain the same. Therefore,
-   * the world position, rotation, and scale of this node may be different after the parent changes.
-   *
-   * <p>The parent may be another {@link Node} or a {@link Scene}. If it is a scene, then this
-   * {@link Node} is considered top level. {@link #getParent()} will return null, and {@link
-   * #getScene()} will return the scene.
-   *
-   * @see #getParent()
-   * @see #getScene()
-   * @param parent The new parent that this node will be a child of. If null, this node will be
-   *     detached from its parent.
-   */
   public void setParent(@Nullable NodeParent parent) {
     AndroidPreconditions.checkUiThread();
 
@@ -295,14 +234,6 @@ public class Node extends NodeParent implements TransformProvider {
     return scene;
   }
 
-  /**
-   * Returns the parent of this node. If this {@link Node} has a parent, and that parent is a {@link
-   * Node} or {@link Node} subclass, then this function returns the parent as a {@link Node}.
-   * Returns null if the parent is a {@link Scene}, use {@link #getScene()} to retrieve the parent
-   * instead.
-   *
-   * @return the parent as a {@link Node}, if the parent is a {@link Node}.
-   */
   @Nullable
   public final Node getParent() {
     return parentAsNode;
@@ -350,13 +281,6 @@ public class Node extends NodeParent implements TransformProvider {
     return false;
   }
 
-  /**
-   * Sets the enabled state of this node. Note that a Node may be enabled but still inactive if it
-   * isn't part of the scene or if its parent is inactive.
-   *
-   * @see #isActive()
-   * @param enabled the new enabled status of the node
-   */
   public final void setEnabled(boolean enabled) {
     AndroidPreconditions.checkUiThread();
 
@@ -368,13 +292,6 @@ public class Node extends NodeParent implements TransformProvider {
     updateActiveStatusRecursively();
   }
 
-  /**
-   * Gets the enabled state of this node. Note that a Node may be enabled but still inactive if it
-   * isn't part of the scene or if its parent is inactive.
-   *
-   * @see #isActive()
-   * @return the node's enabled status.
-   */
   public final boolean isEnabled() {
     return enabled;
   }
@@ -1246,12 +1163,6 @@ public class Node extends NodeParent implements TransformProvider {
       return false;
     }
 
-    // TODO: It feels wrong to give Node direct knowledge of Views/ViewRenderable.
-    // It also feels wrong to have a 'Renderable' receive touch events. This hints at a larger
-    // API
-    // problem of Renderable representing more than just rendering information (we have this
-    // problem
-    // with collision shapes too). Investigate a way to refactor this.
     if (dispatchToViewRenderable(motionEvent)) {
       return true;
     }
@@ -1285,22 +1196,7 @@ public class Node extends NodeParent implements TransformProvider {
     updateActiveStatusRecursively();
   }
 
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // TODO: Gltf animation api should be consistent with Sceneform.
   @Nullable
   public RenderableInstance getRenderableInstance() {
     return renderableInstance;

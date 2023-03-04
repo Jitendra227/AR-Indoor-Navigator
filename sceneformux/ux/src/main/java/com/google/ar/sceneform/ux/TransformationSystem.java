@@ -42,8 +42,7 @@ public class TransformationSystem {
 
   private SelectionVisualizer selectionVisualizer;
 
-  @Nullable
-  private BaseTransformableNode selectedNode;
+  @Nullable private BaseTransformableNode selectedNode;
 
   @SuppressWarnings("initialization")
   public TransformationSystem(

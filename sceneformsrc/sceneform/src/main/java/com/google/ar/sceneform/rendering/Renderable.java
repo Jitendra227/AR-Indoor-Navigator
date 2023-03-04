@@ -41,8 +41,7 @@ public abstract class Renderable {
   private int renderPriority = RENDER_PRIORITY_DEFAULT;
   private boolean isShadowCaster = true;
   private boolean isShadowReceiver = true;
-  @Nullable
-  protected CollisionShape collisionShape;
+  @Nullable protected CollisionShape collisionShape;
 
   private final ChangeId changeId = new ChangeId();
 
@@ -303,7 +302,8 @@ public abstract class Renderable {
     @Nullable protected Context context = null;
 
     @Nullable private Uri sourceUri = null;
-    @Nullable private Callable<InputStream> inputStreamCreator = null;
+    @Nullable
+    private Callable<InputStream> inputStreamCreator = null;
     @Nullable private RenderableDefinition definition = null;
     private boolean isGltf = false;
     private boolean isFilamentAsset = false;
@@ -494,7 +494,7 @@ public abstract class Renderable {
 
     
     private CompletableFuture<T> loadRenderableFromGltf(
-        @NonNull Context context, T renderable, @Nullable byte[] materialsBytes) {return null;}
+            @NonNull Context context, T renderable, @Nullable byte[] materialsBytes) {return null;}
 
 
 
@@ -503,7 +503,7 @@ public abstract class Renderable {
 
 
     private CompletableFuture<T> loadRenderableFromFilamentGltf(
-            @NonNull Context context, T renderable) {
+        @NonNull Context context, T renderable) {
       LoadRenderableFromFilamentGltfTask<T> loader =
           new LoadRenderableFromFilamentGltfTask<>(
               renderable, context, Preconditions.checkNotNull(sourceUri), uriResolver);

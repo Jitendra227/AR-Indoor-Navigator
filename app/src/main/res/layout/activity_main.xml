@@ -8,15 +8,27 @@
     android:background="@drawable/map"
     tools:context=".Activity.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/main_map_frame_layout"
+    <fragment
+        android:id="@+id/sceneform_ar_scene_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:name="com.google.ar.sceneform.ux.ArFragment"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
+
+    <ImageView
+        android:id="@+id/main_maps_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/map"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/set_layout"
@@ -24,7 +36,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@android:color/black"
+        android:background="@android:color/white"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"

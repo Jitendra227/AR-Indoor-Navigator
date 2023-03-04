@@ -46,8 +46,7 @@ class RenderableInternalData implements IRenderableInternalData {
   private final Vector3 transformOffset = Vector3.zero();
 
   // Raw buffers.
-  @Nullable
-  private IntBuffer rawIndexBuffer;
+  @Nullable private IntBuffer rawIndexBuffer;
   @Nullable private FloatBuffer rawPositionBuffer;
   @Nullable private FloatBuffer rawTangentsBuffer;
   @Nullable private FloatBuffer rawUvBuffer;

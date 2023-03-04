@@ -34,8 +34,6 @@ public class Struct {
    *
    * This method exists primarily to allow recycling Struct instances without risking memory leaks
    * due to {@code ByteBuffer} references. The instance will be unusable until it is assigned
-   * again to a {@code ByteBuffer}.
-   *
    */
   public void __reset() {
     bb = null;

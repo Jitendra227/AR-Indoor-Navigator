@@ -39,7 +39,6 @@ android {
 }
 
 dependencies {
-    // Use the Sceneform SDK built from the source files included in the sceneformsrc folder.
     api project(":sceneform")
 
     implementation 'androidx.appcompat:appcompat:1.0.0'

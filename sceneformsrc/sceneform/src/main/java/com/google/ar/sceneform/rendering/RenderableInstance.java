@@ -42,7 +42,7 @@ public class RenderableInstance {
 
   /**
    * Interface for modifying the bone transforms for this specific RenderableInstance. Used by
-   * to make it possible to control a bone by moving a
+   *  to make it possible to control a bone by moving a
    * node.
    */
   public interface SkinningModifier {
@@ -62,8 +62,7 @@ public class RenderableInstance {
 
   private final TransformProvider transformProvider;
   private final Renderable renderable;
-  @Nullable
-  private Renderer attachedRenderer;
+  @Nullable private Renderer attachedRenderer;
   @Entity private int entity = 0;
   @Entity private int childEntity = 0;
   int renderableId = ChangeId.EMPTY_ID;

@@ -28,14 +28,14 @@ class PlaneVisualizer implements TransformProvider {
   private boolean isShadowReceiver = false;
   private boolean isVisible = false;
 
-  @Nullable
-  private ModelRenderable planeRenderable = null;
+  @Nullable private ModelRenderable planeRenderable = null;
   @Nullable private RenderableInstance planeRenderableInstance;
 
   private final ArrayList<Vertex> vertices = new ArrayList<>();
   private final ArrayList<Integer> triangleIndices = new ArrayList<>();
   private final RenderableDefinition renderableDefinition;
-  @Nullable private Submesh planeSubmesh;
+  @Nullable
+  private Submesh planeSubmesh;
   @Nullable private Submesh shadowSubmesh;
 
   private static final int VERTS_PER_BOUNDARY_VERT = 2;

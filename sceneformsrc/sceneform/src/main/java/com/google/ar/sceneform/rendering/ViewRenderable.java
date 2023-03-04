@@ -59,7 +59,8 @@ public class ViewRenderable extends Renderable {
     TOP
   }
 
-  @Nullable private ViewRenderableInternalData viewRenderableData;
+  @Nullable
+  private ViewRenderableInternalData viewRenderableData;
   private final View view;
 
   // Used to apply a final scale to the renderable that makes it render at an appropriate size based
@@ -70,8 +71,7 @@ public class ViewRenderable extends Renderable {
   private VerticalAlignment verticalAlignment = VerticalAlignment.BOTTOM;
   private HorizontalAlignment horizontalAlignment = HorizontalAlignment.CENTER;
 
-  @Nullable
-  private Renderer renderer;
+  @Nullable private Renderer renderer;
   private boolean isInitialized;
 
   @SuppressWarnings({"initialization"})

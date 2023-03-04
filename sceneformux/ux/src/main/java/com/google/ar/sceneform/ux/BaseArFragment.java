@@ -106,9 +106,9 @@ public abstract class BaseArFragment extends Fragment
   private FrameLayout frameLayout;
   private boolean isStarted;
   private boolean canRequestDangerousPermissions = true;
-  @Nullable private OnSessionInitializationListener onSessionInitializationListener;
   @Nullable
-  private OnTapArPlaneListener onTapArPlaneListener;
+  private OnSessionInitializationListener onSessionInitializationListener;
+  @Nullable private OnTapArPlaneListener onTapArPlaneListener;
 
   @SuppressWarnings({"initialization"})
   private final OnWindowFocusChangeListener onFocusListener =
